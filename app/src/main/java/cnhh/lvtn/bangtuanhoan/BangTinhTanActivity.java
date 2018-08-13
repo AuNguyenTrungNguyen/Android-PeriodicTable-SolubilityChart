@@ -1,11 +1,14 @@
 package cnhh.lvtn.bangtuanhoan;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -479,50 +482,69 @@ public class BangTinhTanActivity extends AppCompatActivity {
         }
 
         String temp = result + "<small><sup>" + hoaTri + "</sup></small>";
-        result = "<b>" + temp + "</b";
+        result = "<b>" + temp + "</b>";
 
         return result;
     }
 
     private void createTableDynamic() {
-        int lengtAnion = mAnionList.size();
-        int lengtCation = mCationList.size();
+        int lengthAnion = mAnionList.size();
+        int lengthCation = mCationList.size();
 
-        for (int i = 1; i <= lengtAnion; i++) {
+        //Create header Cation
+        TableRow rowHeader = new TableRow(this);
+        TextView tvNull = new TextView(getApplicationContext());
+        rowHeader.addView(tvNull, 100, 100);
+
+        for (Cation cation : mCationList) {
+            TextView tvHeader = new TextView(this);
+            tvHeader.setText(Html.fromHtml(showIon(cation.getTenCation(), cation.getHoaTri())));
+            tvHeader.setGravity(Gravity.CENTER);
+            tvHeader.setTextColor(Color.WHITE);
+            rowHeader.addView(tvHeader, 100, 100);
+        }
+        mTbBangTinhTan.addView(rowHeader);
+
+        for (int i = 1; i <= lengthAnion; i++) {
             TableRow row = new TableRow(this);
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            row.setLayoutParams(lp);
+//            row.setBackgroundColor(Color.BLUE);
+//            TableLayout.LayoutParams layoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+//            layoutParams.setMargins(2,2,2,2);
+//            row.setLayoutParams(layoutParams);
 
-            for (int j = 1; j <= lengtCation; j++) {
+            //Show name anion
+            Anion anion = mAnionList.get(i - 1);
+            TextView tvHeader = new TextView(this);
+            tvHeader.setText(Html.fromHtml(showIon(anion.getTenAnion(), anion.getHoaTriAnion())));
+            tvHeader.setGravity(Gravity.CENTER);
+            tvHeader.setTextColor(Color.WHITE);
+            row.addView(tvHeader, 150, 100);
 
-                LayoutInflater vi = getLayoutInflater();
-                View v = vi.inflate(R.layout.item_tinh_tan, null);
-                TextView tvTinhTan = (TextView) v.findViewById(R.id.tv_tinh_tan);
+            for (int j = 1; j <= lengthCation; j++) {
 
+                TextView tvTinhTan = new TextView(this);
                 final String tinhTan = getTinhTan(i, j);
+
+                Log.i("ANTN", "tinhTan: " + tinhTan);
 
                 if (!tinhTan.equals("")) {
                     tvTinhTan.setText(tinhTan);
-
-                } else {
-                    Log.i("ANTN", "Tinh tan: " + tinhTan);
+                    tvTinhTan.setGravity(Gravity.CENTER);
+                    tvTinhTan.setBackgroundColor(Color.WHITE);
                 }
-
-                row.addView(v, 50, 50);
+                row.addView(tvTinhTan, 99, 99);
             }
 
-
             mTbBangTinhTan.addView(row);
-
         }
     }
 
-    private String getTinhTan(int anion, int cation){
+    private String getTinhTan(int anion, int cation) {
         String result = "";
 
-        for (int i = 0; i < mBangTinhTanList.size(); i++){
+        for (int i = 0; i < mBangTinhTanList.size(); i++) {
             BangTinhTan bangTinhTan = mBangTinhTanList.get(i);
-            if (bangTinhTan.getAnion() == anion && bangTinhTan.getCation() == cation){
+            if (bangTinhTan.getAnion() == anion && bangTinhTan.getCation() == cation) {
                 return bangTinhTan.getTinhTan();
             }
         }

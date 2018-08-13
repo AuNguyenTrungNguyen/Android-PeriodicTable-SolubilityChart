@@ -17,6 +17,7 @@
             android:scrollbars="none">
 
             <TableLayout
+                android:background="#000"
                 android:id="@+id/tl_bang_tinh_tan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
