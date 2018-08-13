@@ -1,4 +1,4 @@
-package cnhh.lvtn.bangtuanhoan;
+package cnhh.lvtn.bangtuanhoan.Activity;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -7,16 +7,17 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cnhh.lvtn.bangtuanhoan.Model.Anion;
+import cnhh.lvtn.bangtuanhoan.Model.BangTinhTan;
+import cnhh.lvtn.bangtuanhoan.Model.Cation;
+import cnhh.lvtn.bangtuanhoan.R;
 
 public class BangTinhTanActivity extends AppCompatActivity {
 
@@ -32,17 +33,17 @@ public class BangTinhTanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.item_day_hoat_dong);
+        setContentView(R.layout.activity_bang_tinh_tan);
 
         init();
 
-//        addAnion();
-//
-//        addCation();
-//
-//        addSolubility();
-//
-//        createTableDynamic();
+        addAnion();
+
+        addCation();
+
+        addSolubility();
+
+        createTableDynamic();
 
     }
 
@@ -449,25 +450,520 @@ public class BangTinhTanActivity extends AppCompatActivity {
         bangTinhTan = new BangTinhTan(5, 13, "T");
         mBangTinhTanList.add(bangTinhTan);
 
-        bangTinhTan = new BangTinhTan(5, 14, "T");
+        bangTinhTan = new BangTinhTan(5, 14, "-");
         mBangTinhTanList.add(bangTinhTan);
 
         bangTinhTan = new BangTinhTan(5, 15, "T");
         mBangTinhTanList.add(bangTinhTan);
 
-        bangTinhTan = new BangTinhTan(5, 16, "T");
+        bangTinhTan = new BangTinhTan(5, 16, "-");
         mBangTinhTanList.add(bangTinhTan);
 
-        bangTinhTan = new BangTinhTan(5, 17, "T");
+        bangTinhTan = new BangTinhTan(5, 17, "-");
         mBangTinhTanList.add(bangTinhTan);
 
         bangTinhTan = new BangTinhTan(5, 18, "T");
         mBangTinhTanList.add(bangTinhTan);
 
-        bangTinhTan = new BangTinhTan(5, 19, "T");
+        bangTinhTan = new BangTinhTan(5, 19, "-");
         mBangTinhTanList.add(bangTinhTan);
 
         bangTinhTan = new BangTinhTan(5, 20, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        ///-moi add
+        bangTinhTan = new BangTinhTan(6, 1, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 2, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 3, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 4, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 5, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 6, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 7, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 8, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 9, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 10, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 11, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 12, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 13, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 14, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 15, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 16, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 17, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 18, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 19, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(6, 20, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        //--
+
+        bangTinhTan = new BangTinhTan(7, 1, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 2, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 3, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 4, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 5, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 6, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 7, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 8, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 9, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 10, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 11, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 12, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 13, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 14, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 15, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 16, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 17, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 18, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 19, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(7, 20, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        //--
+
+        bangTinhTan = new BangTinhTan(8, 1, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 2, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 3, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 4, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 5, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 6, "I");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 7, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 8, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 9, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 10, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 11, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 12, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 13, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 14, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 15, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 16, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 17, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 18, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 19, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(8, 20, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        //--
+
+        bangTinhTan = new BangTinhTan(9, 1, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 2, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 3, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 4, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 5, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 6, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 7, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 8, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 9, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 10, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 11, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 12, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 13, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 14, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 15, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 16, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 17, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 18, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 19, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(9, 20, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        //--
+
+        bangTinhTan = new BangTinhTan(10, 1, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 2, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 3, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 4, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 5, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 6, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 7, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 8, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 9, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 10, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 11, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 12, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 13, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 14, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 15, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 16, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 17, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 18, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 19, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(10, 20, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        //--
+
+        bangTinhTan = new BangTinhTan(11, 1, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 2, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 3, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 4, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 5, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 6, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 7, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 8, "I");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 9, "I");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 10, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 11, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 12, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 13, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 14, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 15, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 16, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 17, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 18, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 19, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(11, 20, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        //--
+
+        bangTinhTan = new BangTinhTan(12, 1, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 2, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 3, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 4, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 5, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 6, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 7, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 8, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 9, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 10, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 11, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 12, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 13, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 14, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 15, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 16, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 17, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 18, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 19, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(12, 20, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        //--
+
+        bangTinhTan = new BangTinhTan(13, 1, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 2, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 3, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 4, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 5, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 6, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 7, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 8, "I");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 9, "I");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 10, "T");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 11, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 12, "-");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 13, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 14, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 15, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 16, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 17, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 18, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 19, "K");
+        mBangTinhTanList.add(bangTinhTan);
+
+        bangTinhTan = new BangTinhTan(13, 20, "K");
         mBangTinhTanList.add(bangTinhTan);
     }
 

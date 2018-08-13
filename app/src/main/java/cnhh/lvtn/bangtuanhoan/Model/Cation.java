@@ -1,4 +1,4 @@
-package cnhh.lvtn.bangtuanhoan;
+package cnhh.lvtn.bangtuanhoan.Model;
 
 public class Cation {
     private int mIdCation;
