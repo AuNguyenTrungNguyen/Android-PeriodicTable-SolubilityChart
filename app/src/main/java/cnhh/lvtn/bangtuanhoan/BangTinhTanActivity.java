@@ -32,17 +32,17 @@ public class BangTinhTanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_bang_tinh_tan);
+        setContentView(R.layout.item_day_hoat_dong);
 
         init();
 
-        addAnion();
-
-        addCation();
-
-        addSolubility();
-
-        createTableDynamic();
+//        addAnion();
+//
+//        addCation();
+//
+//        addSolubility();
+//
+//        createTableDynamic();
 
     }
 
