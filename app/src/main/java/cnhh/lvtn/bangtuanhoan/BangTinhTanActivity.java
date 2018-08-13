@@ -1,6 +1,7 @@
 package cnhh.lvtn.bangtuanhoan;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -24,11 +25,13 @@ public class BangTinhTanActivity extends AppCompatActivity {
     private List<BangTinhTan> mBangTinhTanList;
 
     private TableLayout mTbBangTinhTan;
+    private TableLayout mTbAnion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_bang_tinh_tan);
 
         init();
@@ -49,6 +52,7 @@ public class BangTinhTanActivity extends AppCompatActivity {
         mBangTinhTanList = new ArrayList<>();
 
         mTbBangTinhTan = findViewById(R.id.tl_bang_tinh_tan);
+        mTbAnion = findViewById(R.id.tl_anion);
     }
 
     private void addAnion() {
@@ -481,6 +485,14 @@ public class BangTinhTanActivity extends AppCompatActivity {
             }
         }
 
+        String strHoaTri = hoaTri.substring(hoaTri.length() - 1, hoaTri.length());
+
+        if (strHoaTri.equals("+")) {
+            hoaTri = " <font color='red'>" + hoaTri + "</font>";
+        } else {
+            hoaTri = " <font color='blue'>" + hoaTri + "</font>";
+        }
+
         String temp = result + "<small><sup>" + hoaTri + "</sup></small>";
         result = "<b>" + temp + "</b>";
 
@@ -494,47 +506,49 @@ public class BangTinhTanActivity extends AppCompatActivity {
         //Create header Cation
         TableRow rowHeader = new TableRow(this);
         TextView tvNull = new TextView(getApplicationContext());
-        rowHeader.addView(tvNull, 100, 100);
+        tvNull.setGravity(Gravity.CENTER);
+        tvNull.setBackgroundResource(R.drawable.background_item_empty_bang_tinh_tan);
+        rowHeader.addView(tvNull, 100, 55);
+        mTbAnion.addView(rowHeader);
 
+        //Create header anion
+        for (Anion anion : mAnionList) {
+            TextView tvHeader = new TextView(this);
+            rowHeader = new TableRow(this);
+            tvHeader.setText(Html.fromHtml(showIon(anion.getTenAnion(), anion.getHoaTriAnion())));
+            tvHeader.setGravity(Gravity.CENTER);
+            tvHeader.setBackgroundResource(R.drawable.background_item_header_anion_bang_tinh_tan);
+            rowHeader.addView(tvHeader, 100, 55);
+            mTbAnion.addView(rowHeader);
+        }
+
+        //Create header cation
+        rowHeader = new TableRow(this);
         for (Cation cation : mCationList) {
             TextView tvHeader = new TextView(this);
             tvHeader.setText(Html.fromHtml(showIon(cation.getTenCation(), cation.getHoaTri())));
             tvHeader.setGravity(Gravity.CENTER);
-            tvHeader.setTextColor(Color.WHITE);
-            rowHeader.addView(tvHeader, 100, 100);
+            tvHeader.setBackgroundResource(R.drawable.background_item_header_cation_bang_tinh_tan);
+            rowHeader.addView(tvHeader, 100, 55);
         }
         mTbBangTinhTan.addView(rowHeader);
 
+        //Add item
         for (int i = 1; i <= lengthAnion; i++) {
             TableRow row = new TableRow(this);
-//            row.setBackgroundColor(Color.BLUE);
-//            TableLayout.LayoutParams layoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
-//            layoutParams.setMargins(2,2,2,2);
-//            row.setLayoutParams(layoutParams);
-
-            //Show name anion
-            Anion anion = mAnionList.get(i - 1);
-            TextView tvHeader = new TextView(this);
-            tvHeader.setText(Html.fromHtml(showIon(anion.getTenAnion(), anion.getHoaTriAnion())));
-            tvHeader.setGravity(Gravity.CENTER);
-            tvHeader.setTextColor(Color.WHITE);
-            row.addView(tvHeader, 150, 100);
 
             for (int j = 1; j <= lengthCation; j++) {
-
                 TextView tvTinhTan = new TextView(this);
                 final String tinhTan = getTinhTan(i, j);
 
                 Log.i("ANTN", "tinhTan: " + tinhTan);
 
                 if (!tinhTan.equals("")) {
-                    tvTinhTan.setText(tinhTan);
-                    tvTinhTan.setGravity(Gravity.CENTER);
-                    tvTinhTan.setBackgroundColor(Color.WHITE);
+                    mSetItem(tinhTan,tvTinhTan);
+                    tvTinhTan.setBackgroundResource(R.drawable.background_item_bang_tinh_tan);
                 }
-                row.addView(tvTinhTan, 99, 99);
+                row.addView(tvTinhTan, 100, 55);
             }
-
             mTbBangTinhTan.addView(row);
         }
     }
@@ -550,4 +564,24 @@ public class BangTinhTanActivity extends AppCompatActivity {
         }
         return result;
     }
+
+    private void mSetItem(String text, TextView tvTinhTan){
+        tvTinhTan.setText(text);
+        tvTinhTan.setGravity(Gravity.CENTER);
+        tvTinhTan.setTypeface(tvTinhTan.getTypeface(), Typeface.BOLD);
+        switch (text){
+            case "T":
+                tvTinhTan.setTextColor(Color.BLUE);
+                break;
+            case "K":
+                tvTinhTan.setTextColor(Color.RED);
+                break;
+            case "I":
+                break;
+            case "-":
+                tvTinhTan.setTextColor(Color.GREEN);
+                break;
+        }
+    }
+
 }
