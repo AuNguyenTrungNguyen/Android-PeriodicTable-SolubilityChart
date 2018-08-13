@@ -3,16 +3,16 @@ package cnhh.lvtn.bangtuanhoan;
 public class Cation {
     private int mIdCation;
     private String mTenCation;
-    private String mHoaTri;
+    private String mHoaTriCation;
 
     public Cation() {
 
     }
 
-    public Cation(int mIdCation, String mTenCation, String mHoaTri) {
+    public Cation(int mIdCation, String mTenCation, String mHoaTriCation) {
         this.mIdCation = mIdCation;
         this.mTenCation = mTenCation;
-        this.mHoaTri = mHoaTri;
+        this.mHoaTriCation = mHoaTriCation;
     }
 
     public int getIdCation() {
@@ -31,11 +31,11 @@ public class Cation {
         this.mTenCation = mTenCation;
     }
 
-    public String getHoaTri() {
-        return mHoaTri;
+    public String getHoaTriCation() {
+        return mHoaTriCation;
     }
 
-    public void setHoaTri(String mHoaTri) {
-        this.mHoaTri = mHoaTri;
+    public void setHoaTriCation(String mHoaTriCation) {
+        this.mHoaTriCation = mHoaTriCation;
     }
 }

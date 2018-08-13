@@ -24,8 +24,8 @@ public class BangTinhTanActivity extends AppCompatActivity {
     private List<Cation> mCationList;
     private List<BangTinhTan> mBangTinhTanList;
 
-    private TableLayout mTbBangTinhTan;
-    private TableLayout mTbAnion;
+    private TableLayout mTlBangTinhTan;
+    private TableLayout mTlAnion;
 
 
     @Override
@@ -40,7 +40,7 @@ public class BangTinhTanActivity extends AppCompatActivity {
 
         addCation();
 
-        addTinhTan();
+        addSolubility();
 
         createTableDynamic();
 
@@ -51,8 +51,8 @@ public class BangTinhTanActivity extends AppCompatActivity {
         mCationList = new ArrayList<>();
         mBangTinhTanList = new ArrayList<>();
 
-        mTbBangTinhTan = findViewById(R.id.tl_bang_tinh_tan);
-        mTbAnion = findViewById(R.id.tl_anion);
+        mTlBangTinhTan = findViewById(R.id.tl_bang_tinh_tan);
+        mTlAnion = findViewById(R.id.tl_anion);
     }
 
     private void addAnion() {
@@ -159,7 +159,7 @@ public class BangTinhTanActivity extends AppCompatActivity {
         mCationList.add(cation);
     }
 
-    private void addTinhTan() {
+    private void addSolubility() {
         BangTinhTan bangTinhTan;
 
         bangTinhTan = new BangTinhTan(1, 1, "T");
@@ -509,7 +509,7 @@ public class BangTinhTanActivity extends AppCompatActivity {
         tvNull.setGravity(Gravity.CENTER);
         tvNull.setBackgroundResource(R.drawable.background_item_empty_bang_tinh_tan);
         rowHeader.addView(tvNull, 100, 55);
-        mTbAnion.addView(rowHeader);
+        mTlAnion.addView(rowHeader);
 
         //Create header anion
         for (Anion anion : mAnionList) {
@@ -519,19 +519,19 @@ public class BangTinhTanActivity extends AppCompatActivity {
             tvHeader.setGravity(Gravity.CENTER);
             tvHeader.setBackgroundResource(R.drawable.background_item_header_anion_bang_tinh_tan);
             rowHeader.addView(tvHeader, 100, 55);
-            mTbAnion.addView(rowHeader);
+            mTlAnion.addView(rowHeader);
         }
 
         //Create header cation
         rowHeader = new TableRow(this);
         for (Cation cation : mCationList) {
             TextView tvHeader = new TextView(this);
-            tvHeader.setText(Html.fromHtml(showIon(cation.getTenCation(), cation.getHoaTri())));
+            tvHeader.setText(Html.fromHtml(showIon(cation.getTenCation(), cation.getHoaTriCation())));
             tvHeader.setGravity(Gravity.CENTER);
             tvHeader.setBackgroundResource(R.drawable.background_item_header_cation_bang_tinh_tan);
             rowHeader.addView(tvHeader, 100, 55);
         }
-        mTbBangTinhTan.addView(rowHeader);
+        mTlBangTinhTan.addView(rowHeader);
 
         //Add item
         for (int i = 1; i <= lengthAnion; i++) {
@@ -544,12 +544,12 @@ public class BangTinhTanActivity extends AppCompatActivity {
                 Log.i("ANTN", "tinhTan: " + tinhTan);
 
                 if (!tinhTan.equals("")) {
-                    mSetItem(tinhTan,tvTinhTan);
+                    setItemValue(tinhTan,tvTinhTan);
                     tvTinhTan.setBackgroundResource(R.drawable.background_item_bang_tinh_tan);
                 }
                 row.addView(tvTinhTan, 100, 55);
             }
-            mTbBangTinhTan.addView(row);
+            mTlBangTinhTan.addView(row);
         }
     }
 
@@ -565,7 +565,7 @@ public class BangTinhTanActivity extends AppCompatActivity {
         return result;
     }
 
-    private void mSetItem(String text, TextView tvTinhTan){
+    private void setItemValue(String text, TextView tvTinhTan){
         tvTinhTan.setText(text);
         tvTinhTan.setGravity(Gravity.CENTER);
         tvTinhTan.setTypeface(tvTinhTan.getTypeface(), Typeface.BOLD);

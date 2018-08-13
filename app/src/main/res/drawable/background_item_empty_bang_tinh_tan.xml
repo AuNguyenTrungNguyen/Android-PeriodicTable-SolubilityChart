@@ -8,4 +8,14 @@
                 android:color = "#797878"/>
         </shape>
     </item>
+
+    <item>
+        <rotate android:fromDegrees="26.5">
+            <shape android:shape="line">
+                <stroke
+                    android:width="2dp"
+                    android:color="#797878" />
+            </shape>
+        </rotate>
+    </item>
 </layer-list >
