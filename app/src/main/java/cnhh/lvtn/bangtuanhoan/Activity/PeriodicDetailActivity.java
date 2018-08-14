@@ -10,7 +10,7 @@ public class PeriodicDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_periodic_detail);
-        setContentView(new RandomCircles(this));
+        setContentView(R.layout.activity_periodic_detail);
+        //setContentView(new RandomCircles(this));
     }
 }

@@ -35,12 +35,11 @@ public class RandomCircles extends View {
 
     private Paint mPaintAtom;
     private Paint mPaintElectron;
-    private TextPaint mTextPaint;
 
     private Animation animation;
 
-    public RandomCircles(Context context) {
-        super(context);
+    public RandomCircles(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
 
         mPaintAtom = new Paint();
         mPaintAtom.setColor(Color.BLACK);
@@ -50,10 +49,6 @@ public class RandomCircles extends View {
         mPaintElectron = new Paint();
         mPaintElectron.setColor(Color.BLACK);
         mPaintElectron.setStrokeWidth(4f);
-
-        mTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setColor(Color.WHITE);
-        mTextPaint.setTextSize(25);
     }
 
 
@@ -72,13 +67,6 @@ public class RandomCircles extends View {
         if (animation == null) {
             initAnimation();
         }
-
-        //Draw Name Atom
-        Rect textBounds = new Rect();
-        String text = "Au";
-        mTextPaint.getTextBounds(text, 0, text.length(), textBounds);
-        canvas.drawText(text, mWidth - textBounds.exactCenterX(), mHeight - textBounds.exactCenterY(), mTextPaint);
-
     }
 
     private void initAnimation() {
@@ -92,7 +80,7 @@ public class RandomCircles extends View {
 
     private void drawWithNumberElectron(int num, int border, Canvas canvas) {
 
-        int style = border % 2  != 0 ? ODD : EVEN;
+        int style = border % 2 != 0 ? ODD : EVEN;
 
         for (int i = 1; i <= num; i++) {
             int angle = i * (360 / num);
