@@ -9,6 +9,9 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,8 @@ public class RandomCircles extends View {
 
     private Paint mPaintAtom;
     private Paint mPaintElectron;
+
+    private Animation animation;
 
     public RandomCircles(Context context) {
         super(context);
@@ -57,6 +62,18 @@ public class RandomCircles extends View {
         //Draw Electron
         canvas.drawCircle(mWidth, mHeight - RADIUS_ATOM, RADIUS_ELECTRON, mPaintElectron);
         canvas.drawCircle(mWidth, mHeight + RADIUS_ATOM, RADIUS_ELECTRON, mPaintElectron);
+        canvas.drawCircle(mWidth+ RADIUS_ATOM * 2, mHeight , RADIUS_ELECTRON, mPaintElectron);
+        if (animation == null) {
+            initAnimation();
+        }
+    }
 
+    private void initAnimation() {
+        animation = new RotateAnimation(0, 360, mWidth, mHeight);
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setRepeatMode(Animation.RESTART);
+        animation.setDuration(7500L);
+        animation.setInterpolator(new LinearInterpolator());
+        startAnimation(animation);
     }
 }
