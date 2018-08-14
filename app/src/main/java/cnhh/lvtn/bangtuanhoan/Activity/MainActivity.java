@@ -2,6 +2,7 @@ package cnhh.lvtn.bangtuanhoan.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cnhh.lvtn.bangtuanhoan.Model.ChatHoaHoc;
+import cnhh.lvtn.bangtuanhoan.Model.Group;
 import cnhh.lvtn.bangtuanhoan.R;
 
 public class MainActivity extends AppCompatActivity {
 
     List<ChatHoaHoc> chatHoaHocList;
+    List<Group> groupList;
 
     TableLayout tableLayout;
+    TextView tvId;
+    TextView tvKyHieu;
+    TextView tvTen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         init();
 
         addData();
+
+        addGroup();
 
         dynamicTable();
 
@@ -44,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         chatHoaHocList = new ArrayList<>();
+        groupList = new ArrayList<>();
         tableLayout = findViewById(R.id.layout);
     }
 
@@ -62,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
             tvKyHieu = (TextView) view.findViewById(R.id.tv_ky_hieu);
             tvTen = (TextView) view.findViewById(R.id.tv_ten);
             if (i == 1 || i == 18) {
-                tvKyHieu.setText("X");
+                tvKyHieu.setText(groupList.get(i - 1).getNameGroup());
+                tvKyHieu.setTextSize(20);
+                tvKyHieu.setGravity(Gravity.BOTTOM | Gravity.CENTER);
             } else {
                 tvKyHieu.setText("");
             }
@@ -70,7 +81,12 @@ public class MainActivity extends AppCompatActivity {
             tvTen.setText("");
             view.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
             //view.findViewById(R.id.ln_item).setBackgroundResource(R.drawable.background_item_chat_hoa_hoc);
-
+            if (i == 0 || i == 18) {
+                view.setBackgroundResource(R.drawable.backgroud_item_empty_first_lantan_3a8a);
+            }
+            if (i == 1) {
+                view.setBackgroundResource(R.drawable.backgroud_item_group);
+            }
             if (view.getParent() != null) {
                 ((ViewGroup) view.getParent()).removeView(view);
             }
@@ -86,8 +102,9 @@ public class MainActivity extends AppCompatActivity {
             tvTen = (TextView) view.findViewById(R.id.tv_ten);
             tvId.setText("");
             tvTen.setText("");
-            tvKyHieu.setText(i+"");
+            tvKyHieu.setText(i + "");
             view.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
+            view.setBackgroundResource(R.drawable.backgroud_item_cycle_first_actini);
             row.addView(view, 120, 190);
 
             for (int j = 1; j < 19; j++) {
@@ -105,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
                     tvTen.setText(chatHoaHoc.getTenChat());
                     LinearLayout layout = v.findViewById(R.id.ln_item);
                     layout.setBackgroundResource(R.drawable.background_item_chat_hoa_hoc);
+                    if (position == 4) {
+                        layout.setBackgroundResource(R.drawable.backgroud_item_cycle_first_actini);
+                    }
 
                     layout.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -117,10 +137,17 @@ public class MainActivity extends AppCompatActivity {
                     tvId.setText("");
                     tvTen.setText("");
                     v.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
-                    if(i == 1 && (j < 3 || j > 12)
-                            || i == 3 && (j > 2 && j < 13)){
-                        tvKyHieu.setText("X");
-                    }else{
+                    if (i == 1 && (j < 3 || j > 12)
+                            || i == 3 && (j > 2 && j < 13)) {
+                        if (i == 1 && j == 13) {
+                            v.setBackgroundResource(R.drawable.backgroud_item_empty_first_lantan_3a8a);
+                        } else {
+                            v.setBackgroundResource(R.drawable.backgroud_item_group);
+                        }
+                        tvKyHieu.setText(groupList.get(j - 1).getNameGroup());
+                        tvKyHieu.setTextSize(20);
+                        tvKyHieu.setGravity(Gravity.BOTTOM | Gravity.CENTER);
+                    } else {
                         tvKyHieu.setText("");
                     }
                 }
@@ -140,21 +167,38 @@ public class MainActivity extends AppCompatActivity {
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         row.setLayoutParams(lp);
 
+        LayoutInflater vi = getLayoutInflater();
+        View v;
+
+        //Create 3 space cell
+        for (int i = 0; i < 3; i++) {
+            v = inflateView(vi);
+            tvId.setText("");
+            tvTen.setText("");
+            tvKyHieu.setText("");
+            v.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
+            row.addView(v, 120, 190);
+        }
+
+        //Create cell "LanTan"
+        v = inflateView(vi);
+        tvId.setText("");
+        tvTen.setText("");
+        tvKyHieu.setText("Lantan");
+        tvKyHieu.setTextSize(16);
+        v.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
+        v.setBackgroundResource(R.drawable.backgroud_item_empty_first_lantan_3a8a);
+        row.addView(v, 120, 190);
+
+        //Data lantan
         for (int i = 58; i < 72; i++) {
-
-            LayoutInflater vi = getLayoutInflater();
-            View v = vi.inflate(R.layout.item_chat_hoa_hoc, null);
-
-            TextView tvId = (TextView) v.findViewById(R.id.tv_id);
-            TextView tvKyHieu = (TextView) v.findViewById(R.id.tv_ky_hieu);
-            TextView tvTen = (TextView) v.findViewById(R.id.tv_ten);
-
+            v = inflateView(vi);
             ChatHoaHoc chatHoaHoc = chatHoaHocList.get(i);
             tvId.setText(String.valueOf(chatHoaHoc.getIdChat()));
             tvKyHieu.setText(chatHoaHoc.getKyHieuChat());
             tvTen.setText(chatHoaHoc.getTenChat());
             LinearLayout layout = v.findViewById(R.id.ln_item);
-            layout.setBackgroundResource(R.drawable.background_item_chat_hoa_hoc);
+            layout.setBackgroundResource(R.drawable.backgroud_item_group);
 
             row.addView(v, 120, 190);
         }
@@ -163,14 +207,29 @@ public class MainActivity extends AppCompatActivity {
 
         row = new TableRow(this);
 
+        //Create 3 space cell
+        for (int i = 0; i < 3; i++) {
+            v = inflateView(vi);
+            tvId.setText("");
+            tvTen.setText("");
+            tvKyHieu.setText("");
+            v.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
+            row.addView(v, 120, 190);
+        }
+
+        //Create cell "Actini"
+        v = inflateView(vi);
+        tvId.setText("");
+        tvTen.setText("");
+        tvKyHieu.setText("Actini");
+        tvKyHieu.setTextSize(16);
+        v.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
+        v.setBackgroundResource(R.drawable.backgroud_item_cycle_first_actini);
+        row.addView(v, 120, 190);
+
+        //Data Actini
         for (int i = 90; i < 104; i++) {
-
-            LayoutInflater vi = getLayoutInflater();
-            View v = vi.inflate(R.layout.item_chat_hoa_hoc, null);
-
-            TextView tvId = (TextView) v.findViewById(R.id.tv_id);
-            TextView tvKyHieu = (TextView) v.findViewById(R.id.tv_ky_hieu);
-            TextView tvTen = (TextView) v.findViewById(R.id.tv_ten);
+            v = inflateView(vi);
 
             ChatHoaHoc chatHoaHoc = chatHoaHocList.get(i);
             tvId.setText(String.valueOf(chatHoaHoc.getIdChat()));
@@ -572,6 +631,73 @@ public class MainActivity extends AppCompatActivity {
 
         chatHoaHoc = new ChatHoaHoc(118, "Og", "Oganesson", 7, "VIII", 18);
         chatHoaHocList.add(chatHoaHoc);
+    }
+
+    private void addGroup() {
+        Group group;
+        group = new Group(1, "IA");
+        groupList.add(group);
+
+        group = new Group(2, "IIA");
+        groupList.add(group);
+
+        group = new Group(3, "IIIB");
+        groupList.add(group);
+
+        group = new Group(4, "IVB");
+        groupList.add(group);
+
+        group = new Group(5, "VB");
+        groupList.add(group);
+
+        group = new Group(6, "VIB");
+        groupList.add(group);
+
+        group = new Group(7, "VIIB");
+        groupList.add(group);
+
+        group = new Group(8, "VIIIB");
+        groupList.add(group);
+
+        group = new Group(9, "VIIIB");
+        groupList.add(group);
+
+        group = new Group(10, "VIIIB");
+        groupList.add(group);
+
+        group = new Group(11, "IB");
+        groupList.add(group);
+
+        group = new Group(12, "IIB");
+        groupList.add(group);
+
+        group = new Group(13, "IIIA");
+        groupList.add(group);
+
+        group = new Group(14, "IVA");
+        groupList.add(group);
+
+        group = new Group(15, "VA");
+        groupList.add(group);
+
+        group = new Group(16, "VIA");
+        groupList.add(group);
+
+        group = new Group(17, "VIIA");
+        groupList.add(group);
+
+        group = new Group(18, "VIIIA");
+        groupList.add(group);
+    }
+
+    private View inflateView(LayoutInflater vi){
+        View v = vi.inflate(R.layout.item_chat_hoa_hoc, null);
+
+        tvId = (TextView) v.findViewById(R.id.tv_id);
+        tvKyHieu = (TextView) v.findViewById(R.id.tv_ky_hieu);
+        tvTen = (TextView) v.findViewById(R.id.tv_ten);
+
+        return v;
     }
 
 }
