@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -47,21 +48,55 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void dynamicTable() {
+        TableRow header = new TableRow(this);
+
+        LayoutInflater l = getLayoutInflater();
+        View view;
+        TextView tvId;
+        TextView tvKyHieu;
+        TextView tvTen;
+
+        for (int i = 0; i < 19; i++) {
+            view = l.inflate(R.layout.item_chat_hoa_hoc, null);
+            tvId = (TextView) view.findViewById(R.id.tv_id);
+            tvKyHieu = (TextView) view.findViewById(R.id.tv_ky_hieu);
+            tvTen = (TextView) view.findViewById(R.id.tv_ten);
+            if (i == 1 || i == 18) {
+                tvKyHieu.setText("X");
+            } else {
+                tvKyHieu.setText("");
+            }
+            tvId.setText("");
+            tvTen.setText("");
+            view.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
+            //view.findViewById(R.id.ln_item).setBackgroundResource(R.drawable.background_item_chat_hoa_hoc);
+
+            if (view.getParent() != null) {
+                ((ViewGroup) view.getParent()).removeView(view);
+            }
+            header.addView(view, 120, 190);
+        }
+        tableLayout.addView(header);
+
         for (int i = 1; i < 8; i++) {
             TableRow row = new TableRow(this);
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            row.setLayoutParams(lp);
+            view = l.inflate(R.layout.item_chat_hoa_hoc, null);
+            tvId = (TextView) view.findViewById(R.id.tv_id);
+            tvKyHieu = (TextView) view.findViewById(R.id.tv_ky_hieu);
+            tvTen = (TextView) view.findViewById(R.id.tv_ten);
+            tvId.setText("");
+            tvTen.setText("");
+            tvKyHieu.setText(i+"");
+            view.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
+            row.addView(view, 120, 190);
 
             for (int j = 1; j < 19; j++) {
 
-                LayoutInflater vi = getLayoutInflater();
-                View v = vi.inflate(R.layout.item_chat_hoa_hoc, null);
-
+                View v = l.inflate(R.layout.item_chat_hoa_hoc, null);
                 final int position = kiemTraTonTai(i, j);
-
-                TextView tvId = (TextView) v.findViewById(R.id.tv_id);
-                TextView tvKyHieu = (TextView) v.findViewById(R.id.tv_ky_hieu);
-                TextView tvTen = (TextView) v.findViewById(R.id.tv_ten);
+                tvId = (TextView) v.findViewById(R.id.tv_id);
+                tvKyHieu = (TextView) v.findViewById(R.id.tv_ky_hieu);
+                tvTen = (TextView) v.findViewById(R.id.tv_ten);
 
                 if (position != -1) {
                     ChatHoaHoc chatHoaHoc = chatHoaHocList.get(position);
@@ -80,21 +115,22 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     tvId.setText("");
-                    tvKyHieu.setText("");
                     tvTen.setText("");
                     v.findViewById(R.id.tv_show).setVisibility(View.INVISIBLE);
+                    if(i == 1 && (j < 3 || j > 12)
+                            || i == 3 && (j > 2 && j < 13)){
+                        tvKyHieu.setText("X");
+                    }else{
+                        tvKyHieu.setText("");
+                    }
                 }
-
-                row.addView(v, 100, 190);
+                row.addView(v, 120, 190);
             }
-
-
             tableLayout.addView(row);
-
         }
     }
 
-    private void showDialogInfo(int position){
+    private void showDialogInfo(int position) {
         Toast.makeText(this, chatHoaHocList.get(position).getTenChat(), Toast.LENGTH_SHORT).show();
     }
 
@@ -120,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout layout = v.findViewById(R.id.ln_item);
             layout.setBackgroundResource(R.drawable.background_item_chat_hoa_hoc);
 
-            row.addView(v, 100, 190);
+            row.addView(v, 120, 190);
         }
 
         tableLayout.addView(row);
@@ -143,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout layout = v.findViewById(R.id.ln_item);
             layout.setBackgroundResource(R.drawable.background_item_chat_hoa_hoc);
 
-            row.addView(v, 100, 190);
+            row.addView(v, 120, 190);
         }
 
         tableLayout.addView(row);

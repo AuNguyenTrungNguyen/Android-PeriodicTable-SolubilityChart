@@ -22,7 +22,7 @@ import java.util.List;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
-public class RandomCircles extends View {
+public class CustomView extends View {
 
     private static final float RADIUS_ATOM = 50;
     private static final float RADIUS_PROTON = 25;
@@ -38,15 +38,15 @@ public class RandomCircles extends View {
 
     private Animation animation;
 
-    public RandomCircles(Context context, AttributeSet attributeSet) {
+    public CustomView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
 
-        mPaintAtom = new Paint();
+        mPaintAtom = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaintAtom.setColor(Color.BLACK);
         mPaintAtom.setStyle(Paint.Style.STROKE);
         mPaintAtom.setStrokeWidth(4f);
 
-        mPaintElectron = new Paint();
+        mPaintElectron = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaintElectron.setColor(Color.BLACK);
         mPaintElectron.setStrokeWidth(4f);
     }
