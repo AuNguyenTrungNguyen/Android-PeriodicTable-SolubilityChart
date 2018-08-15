@@ -114,6 +114,7 @@ public class DienKhuyetActivity extends AppCompatActivity {
         alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String youEditTextValue = edittext.getText().toString();
+                youEditTextValue = standardizeString(youEditTextValue);
                 String temp = text.substring(0, posi.start);
                 String result = temp + "&" + youEditTextValue + "|";
                 temp = text.substring(posi.end, text.length());
@@ -126,5 +127,11 @@ public class DienKhuyetActivity extends AppCompatActivity {
         });
 
         alert.show();
+    }
+
+    private String standardizeString(String str){
+        str = str.trim();
+        str = str.replaceAll("\\s+"," ");
+        return str;
     }
 }
