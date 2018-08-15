@@ -10,18 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.MainActivity">
+
+        </activity>
+        <activity android:name=".Activity.BangTinhTanActivity" />
+        <activity android:name=".Activity.DayHoatDongActivity">
+
+            <!-- Here -->
+        </activity>
+        <activity android:name=".Activity.PeriodicDetailActivity"></activity>
+        <activity android:name=".Activity.DienKhuyetActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.BangTinhTanActivity"></activity>
-        <activity android:name=".Activity.DayHoatDongActivity">
-            <!--Here-->
-        </activity>
-        <activity android:name=".Activity.PeriodicDetailActivity">
-
-        </activity>
     </application>
+
 </manifest>
