@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -45,8 +46,39 @@ public class DienKhuyetActivity extends AppCompatActivity {
         mTvQuestion = findViewById(R.id.tv_question);
 
         SpannableString spannableString = handleClickQuestion("300 là số có &| chữ số, chia &| cho 2 và là số &|.");
+
         mTvQuestion.setText(spannableString);
         mTvQuestion.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    public void check(View view) {
+        Log.i("hihihi", mTvQuestion.getText().toString());
+        String text = mTvQuestion.getText().toString();
+
+        String dapAn = "{3}, {het}, {chan}";
+        String strDapAn[] = dapAn.split(", ");
+
+        String temp = "";
+        int index = 0;
+
+        for (int i = 0; i < posis.size() ; i++) {
+            Posi posi = posis.get(i);
+            temp += text.substring(index, posi.start);
+            //Log.i("hihihi", text.substring(posi.start, posi.end));
+            if(text.substring(posi.start, posi.end).equals(strDapAn[i])){
+                //Log.i("hihihi", "xong r");
+                temp += "<font color='green'>" + text.substring(posi.start, posi.end) + "</font>";
+            }else{
+                temp += "<font color='red'>" + text.substring(posi.start, posi.end) + "</font>";
+            }
+            index = posi.end;
+        }
+        if (index < text.length()){
+             temp += text.substring(index, text.length());
+
+        }
+        //Log.i("hihihi",temp);
+        mTvQuestion.setText(Html.fromHtml(temp));
     }
 
     private class Posi {
@@ -114,6 +146,7 @@ public class DienKhuyetActivity extends AppCompatActivity {
         alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String youEditTextValue = edittext.getText().toString();
+                youEditTextValue = standardizeString(youEditTextValue);
                 String temp = text.substring(0, posi.start);
                 String result = temp + "&" + youEditTextValue + "|";
                 temp = text.substring(posi.end, text.length());
@@ -126,5 +159,11 @@ public class DienKhuyetActivity extends AppCompatActivity {
         });
 
         alert.show();
+    }
+
+    private String standardizeString(String str) {
+        str = str.trim();
+        str = str.replaceAll("\\s+", " ");
+        return str;
     }
 }

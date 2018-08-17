@@ -12,18 +12,18 @@
         <activity android:name=".Activity.MainActivity"></activity>
         <activity android:name=".Activity.BangTinhTanActivity" />
         <activity android:name=".Activity.DayHoatDongActivity">
-
-            <!-- Here -->
         </activity>
         <activity android:name=".Activity.PeriodicDetailActivity" />
         <activity android:name=".Activity.DienKhuyetActivity">
+            <!--Here-->
+        </activity>
+        <activity android:name=".Activity.DragAndDropRecycleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SwipRecycleActivity"></activity>
     </application>
 
 </manifest>
